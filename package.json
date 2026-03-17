@@ -1,0 +1,18 @@
+{
+  "name": "faust-modular-web",
+  "version": "0.1.0",
+  "description": "Faust modular synthesizer web prototype – GSoC 2025 proof-of-concept",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@grame/faustwasm": "^0.6.2"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0",
+    "vite-plugin-static-copy": "^1.0.6"
+  }
+}

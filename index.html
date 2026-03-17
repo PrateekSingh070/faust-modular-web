@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faust Modular Web</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- ── Toolbar ─────────────────────────────────────── -->
+      <header id="toolbar">
+        <span class="logo">&#9835; Faust Modular Web</span>
+        <div class="toolbar-right">
+          <span id="status" class="status idle">Idle</span>
+          <button id="start-btn">Start Audio</button>
+        </div>
+      </header>
+
+      <!-- ── Patch canvas ───────────────────────────────── -->
+      <div id="canvas">
+        <!-- SVG overlay draws patch cables -->
+        <svg id="wire-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+        <!-- Module DOM nodes are placed here by JS -->
+      </div>
+
+      <!-- ── Hint bar ───────────────────────────────────── -->
+      <footer id="hint">
+        Drag module headers to reposition &nbsp;|&nbsp; Drag knobs up/down or
+        scroll to adjust &nbsp;|&nbsp; Signal path: Oscillator &rarr; LP Filter
+        &rarr; Output
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
