@@ -44,7 +44,32 @@ async function buildFaustNode(compiler, context, dspName, dspCode) {
   if (!success) {
     throw new Error(`Faust compile failed for "${dspName}"`);
   }
-  return generator.createNode(context);
+  try {
+    const workletNode = await generator.createNode(context);
+    if (!workletNode) {
+      throw new Error(`Faust node creation returned null for "${dspName}"`);
+    }
+    return workletNode;
+  } catch (error) {
+    const msg = String(error?.message || error);
+    const isWorkletRegistrationError =
+      msg.includes("AudioWorkletNode") || msg.includes("AudioWorkletGlobalScope");
+    if (!isWorkletRegistrationError) {
+      throw error;
+    }
+
+    const fallbackNode = await generator.createNode(
+      context,
+      dspName,
+      undefined,
+      true,
+      1024
+    );
+    if (!fallbackNode) {
+      throw error;
+    }
+    return fallbackNode;
+  }
 }
 
 async function initAudio() {
